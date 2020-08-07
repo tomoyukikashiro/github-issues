@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Link from '@material-ui/core/Link'
 
 import RouterLinkBehavior from './RouterLinkBehavior'
 
@@ -15,6 +16,12 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    color: '#fff'
+  },
+  link: {
+    '&:hover': {
+      textDecoration: 'none'
+    }
   },
   main: {
     padding: '32px 0'
@@ -30,7 +37,7 @@ const Layout = ({ children }) => {
         <Container maxWidth="lg">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              GitHub Search
+              <Link color="inherit" to="/" className={classes.link} component={RouterLinkBehavior}>GitHub Search</Link>
             </Typography>
             <Button color="inherit" to="/" component={RouterLinkBehavior}>HOME</Button>
             <Button color="inherit" to="/settings/" component={RouterLinkBehavior}>SETTINGS</Button>
