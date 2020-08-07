@@ -3,9 +3,16 @@ import GitHub from 'github-api';
 let gh = null;
 export const cachedResults = new Map()
 
+const pastDate = past => new Date(new Date().setDate(new Date().getDate() - past))
+const pastMonth = past => new Date(new Date().setMonth(new Date().getMonth() - past))
+const dateString = date => date.toISOString().split('T')[0]
+
 const convertSpecialQuery = query => {
-  const todayString = new Date().toISOString().split('T')[0]
-  return query.replace(/\${today}/g, todayString)
+  return query
+    .replace(/\${today}/g, dateString(new Date()))
+    .replace(/\${yesterday}/g, dateString(pastDate(1)))
+    .replace(/\${lastWeek}/g, dateString(pastDate(7)))
+    .replace(/\${lastMonth}/g, dateString(pastMonth(1)))
 }
 
 export const getTasks = async (token, queries) => {
