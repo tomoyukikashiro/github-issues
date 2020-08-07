@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "blog-tomoyukikashiro-me"
+  },
+  "targets": {
+    "blog-tomoyukikashiro-me": {
+      "hosting": {
+        "github-issues": [
+          "github-issues-tomoyukikashiro"
+        ]
+      }
+    }
+  }
+}
