@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
-function App() {
+import Index from './pages/workSpace/Index'
+import Settings from './pages/Settings'
+import WorkSpaceDetail from './pages/workSpace/Detail'
+import WorkSpaceUpdate from './pages/workSpace/Update'
+import { FirebaseProvider } from './components/misc/Firebase'
+import { WorkSpaceProvider } from './components/misc/WorkSpace'
+import WorkSpaceCreate from './pages/workSpace/Create'
+import Auth from './components/misc/Auth'
+import Home from './pages/Home'
+
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <FirebaseProvider>
+        <WorkSpaceProvider>
+          <Router>
+            <h1>App</h1>
+            <Link to="/workspace">/workspace</Link>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Auth>
+                <Switch>
+                  <Route exact path="/workspace" component={Index} />
+                  <Route exact path="/settings" component={Settings} />
+                  <Route
+                    exact
+                    path="/workspace/create"
+                    component={WorkSpaceCreate}
+                  />
+                  <Route
+                    exact
+                    path="/workspace/:id"
+                    component={WorkSpaceDetail}
+                  />
+                  <Route
+                    exact
+                    path="/workspace/:id/update"
+                    component={WorkSpaceUpdate}
+                  />
+                </Switch>
+              </Auth>
+            </Switch>
+          </Router>
+        </WorkSpaceProvider>
+      </FirebaseProvider>
+    </>
+  )
 }
 
-export default App;
+export default App
