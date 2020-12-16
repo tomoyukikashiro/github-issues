@@ -1,0 +1,47 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        },
+        "react": {
+            "pragma": "React",
+            "version": "17.0.1"
+        }
+    },
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/prefer-interface": "off",
+        "react/prop-types": "off",
+        "spaced-comment": ["error", "always", { "markers": ["/ <reference"] }],
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": ["interface", "typeAlias"],
+                "format": ["PascalCase"]
+            }
+        ]
+    }
+}
